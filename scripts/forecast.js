@@ -13,16 +13,7 @@ const getCity = async (city) => {
   const base = "http://dataservice.accuweather.com/locations/v1/cities/search";
   const query = `?apikey=${key}&q=${city}`;
 
-  
-  const request = new XMLHttpRequest();
-  console.log(request);
-  request.open("get",base+query);
-  request.send();
-  request.addEventListener("readystatechange",()=>{
-    if(request.readyState===4)
-    {
-      console.log(request);
-    }
-  })
+  const response = await fetch(base+query);
+  const data = await response.json();
   return data[0];
 };
